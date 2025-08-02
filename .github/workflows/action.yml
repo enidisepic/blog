@@ -1,0 +1,46 @@
+name: Build Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_blog:
+    runs-on: ubuntu-latest
+    name: Build blog
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run blog-renderer
+        uses: enidisepic/blog-renderer@main
+        with:
+          intro_path: https://raw.githubusercontent.com/enidisepic/enidisepic/refs/heads/main/blog_intro.adoc
+          stylesheet: style.css
+          github_username: ${{ github.repository_owner }}
+          theme_color: "#76b5c5"
+          title: Enid's Blog
+          nav_path: nav.adoc
+
+      - name: Upload rendered blog
+        uses: actions/upload-pages-artifact@v3
+        id: deployment 
+        with:
+          path: rendered
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy blog to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build_blog
+    permissions:
+      id-token: write
+      pages: write
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        id: deployment
+  

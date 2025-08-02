@@ -1,0 +1,3 @@
+:base: https://enidisepic.github.io/blog
+
+link:{base}[home] | link:{base}/all_posts.html[all posts] | link:https://github.com/enidisepic[github,window=_blank]
