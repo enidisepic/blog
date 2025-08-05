@@ -1,0 +1,7 @@
+packetdiag {
+    0-15: Header;
+    16-31: Question;
+    32-47: Answer;
+    48-63: Authority;
+    64-79: Additional;
+}

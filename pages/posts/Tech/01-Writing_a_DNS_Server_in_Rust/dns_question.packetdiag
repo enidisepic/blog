@@ -1,0 +1,5 @@
+packetdiag {
+    0-15: QNAME (domain name - up to 255 octets including length labels) [colheight = 3];
+    48-63: QTYPE;
+    64-79: QCLASS;
+}

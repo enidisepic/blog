@@ -1,0 +1,8 @@
+packetdiag {
+    0-15: NAME [colheight = 3];
+    48-63: TYPE;
+    64-79: CLASS;
+    80-95: TTL;
+    96-111: RDLENGTH;
+    112-127: RDATA [colheight = 3];
+}
