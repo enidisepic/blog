@@ -1,4 +1,4 @@
-name: Build Blog
+name: Build and Publish Blog
 
 on:
   push:
@@ -7,9 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_blog:
+  build:
+    name: Build Blog
+
     runs-on: ubuntu-latest
-    name: Build blog
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,11 +34,11 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy blog to GitHub Pages
+    name: Deploy Blog to GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build_blog
+    needs: build
     permissions:
       id-token: write
       pages: write
